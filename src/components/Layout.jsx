@@ -64,21 +64,21 @@ function Header() {
   const [open, setOpen] = useState(false)
   const { pathname } = useLocation()
   useEffect(() => setOpen(false), [pathname])
-  const link = ({ isActive }) => `block px-3 py-2.5 text-[15px] font-medium hover:text-brand ${isActive ? 'text-brand' : 'text-slate-800'}`
+  const link = ({ isActive }) => `block whitespace-nowrap px-2 py-2.5 text-[14px] font-medium hover:text-brand ${isActive ? 'text-brand' : 'text-slate-800'}`
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-white/95 shadow-sm backdrop-blur">
-      <div className="wrap flex min-h-[78px] items-center justify-between gap-6">
-        <Link to="/" className="flex items-center gap-3" aria-label={`${SITE.name} home`}>
-          <Logo />
-          <span>
-            <span className="block text-[15px] font-bold uppercase leading-tight text-navy">{SITE.name}</span>
-            <span className="text-xs font-medium text-leaf">{SITE.subtitle}</span>
+      <div className="wrap flex min-h-[78px] items-center justify-between gap-4">
+        <Link to="/" className="flex flex-none items-center gap-3" aria-label={`${SITE.name} home`}>
+          <Logo size={48} />
+          <span className="whitespace-nowrap">
+            <span className="block text-[14px] font-bold uppercase leading-tight text-navy">{SITE.name}</span>
+            <span className="mt-1 block text-[11px] font-medium text-leaf">{SITE.subtitle}</span>
           </span>
         </Link>
 
         <nav aria-label="Main" className={`${open ? 'block' : 'hidden'} absolute inset-x-0 top-full max-h-[75vh] overflow-auto border-b border-line bg-white lg:static lg:block lg:max-h-none lg:overflow-visible lg:border-0`}>
-          <ul className="flex flex-col px-5 py-2 lg:flex-row lg:items-center lg:p-0">
+          <ul className="flex flex-col px-5 py-2 lg:flex-row lg:items-center lg:justify-center lg:p-0">
             {NAV.map((item) => (
               <li key={item.label} className="group relative">
                 <NavLink to={item.to} end className={link}>
@@ -98,7 +98,7 @@ function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button to="/admissions#enquiry" variant="accent" className="hidden lg:inline-block">Apply for Admission</Button>
+          <Button to="/admissions#enquiry" variant="accent" className="hidden flex-none whitespace-nowrap px-4 lg:inline-block">Apply for Admission</Button>
           <button className="rounded border-[1.5px] border-navy p-2 text-navy lg:hidden" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen(!open)}>
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
